@@ -26,20 +26,21 @@ const name2= document.getElementById()
 
 function Bet(bet) {
 let totalBet = totalBet + bet
-}
 
+}
 
 function getCards() {
    
-        cardShuffle = Math.floor(Math.random() * 52) 
+ let cardShuffle = Math.floor(Math.random() * 52) 
 
 }
+getCards(console.log(cardShuffle))
 
 
 function StartGame() {
 
-    dealersHandValue == 2 cards
-    userHandValue == 2 cards
+    // dealersHandValue == 2 cards
+    // userHandValue == 2 cards
 
     if (dealersHandValue === 21 && userHandValue !== 21 ) {
         console.log("Dealer Wins")
