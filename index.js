@@ -7,10 +7,11 @@ let dealersMoney = 1000000000000000000000
 let playersMoney = 1000
 
 // buttons from html 
-const name = document.getElementById()
-const name2= document.getElementById()
+const dealersTotal = document.getElementById("dealersTotal")
+const userTotal = document.getElementById("usersValueHolder")
 
-
+dealersTotal.innerText = `${dealersHandValue}`
+userTotal.innerText = `${playersHandValue}` 
 
 
 
@@ -19,34 +20,43 @@ const name2= document.getElementById()
 
 // functions
 
+// game starts empty page 
 
-
-
-
+// bet amount is decided
 
 function Bet(bet) {
 let totalBet = totalBet + bet
 
 }
 
+
+// bets are placed and the cards are dealt
+
+
+// get a card 
 function getCards() {
-   
- let cardShuffle = Math.floor(Math.random() * 52) 
+   let cardShuffle = Math.floor(Math.random() * 52) 
+    return cardShuffle
 
 }
-getCards(console.log(cardShuffle))
+console.log(getCards())
 
 
 function StartGame() {
 
-    // dealersHandValue == 2 cards
+     // dealersHandValue == 2 cards
+    let dealersCardOne = getCards()
+    let dealersCardTwo = getCards()
+    
     // userHandValue == 2 cards
+    let userCardOne = getCards()
+    let userCardTwo = getCards()
 
+    let dealersHandValue = dealersCardOne + dealersCardTwo
+    let userHandValue = userCardOne + userCardTwo
+    
     if (dealersHandValue === 21 && userHandValue !== 21 ) {
         console.log("Dealer Wins")
-    }
-    else {
-        ContinueGame()
     }
 }
 
