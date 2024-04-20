@@ -89,7 +89,7 @@ body {
 .playersStuff {
     display: flex;
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex: 1;
 }
 
@@ -109,6 +109,15 @@ body {
 .userHand {
   display: flex;
     
+}
+
+.userHand div {
+    flex: 1;
+    background-color: brown;
+    min-width: 90px;
+    min-height: 120px;
+    max-width: 90px;
+    max-height: 120px;
 }
 
 .playersHand {

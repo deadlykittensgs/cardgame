@@ -16,9 +16,9 @@
 
 <section class="gameBoard">
 <div class="computersStuff">
-<div class="computersHand">
-    <div> flipped card</div>
-    <div> Visable card</div>
+<div id="computersHand" class="computersHand">
+    <div id="flippedCard"> flipped card</div>
+    <div id="visableCard"> Visable card</div>
 </div>
 <div class="computersTotal"> 
     <div id="dealersTotal" class="total">00</div>
@@ -26,34 +26,34 @@
 </div>
 
 <div class="usersValue"> 
-    <div class="usersValueHolder">Player Total </div>
-    <div> Deal</div>
+    <div id="usersValueHolder">Total</div>
+    <div id="deal"> Deal</div>
 </div>
 
 
 <div class="playersStuff">
 
 <div class="playersMoney">
-    <div>total</div>
-    <div>bet 1</div>
-    <div>bet 10</div>
+    <div id="betTotal">total</div>
+    <div id="betOne">bet 1</div>
+    <div id="betTwo" >bet 10</div>
     <div>bet 50</div>
     <div>bet 100</div>
-    <div>bet 500</div>
+    <div id="playersMoney">1000</div>
 </div>
 
-<div class="userHand">
-<div class="playersHand">
+<div id="userHand" class="userHand">
+<div id="playerCardOne" class="playersHand">
 card 1
 </div>
-<div class="playersHand">
+<div id="playerCardTwo" class="playersHand">
   card 2
 </div>
 </div>
 
 <div class="playerOptions"> 
-    <button class="hit"> <p>Hit</p></button>
-    <button class="stand"> Stand</button>
+    <button id="hit"  class="hit"> <p>Hit</p></button>
+    <button id="stand" class="stand"> Stand</button>
     <button class="split">Split</button>
     <button class="double"> Double</button>
 </div>
