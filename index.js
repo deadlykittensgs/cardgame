@@ -29,7 +29,7 @@ deal.addEventListener("click", () => dealGame()) // make deal cards
 betOne.addEventListener("click", () => bet(1)) // make add to bet
 betTwo.addEventListener("click", () => bet(10)) // make add to bet
 hitMe.addEventListener("click", hit) // gives player a card
-stand.addEventListener("click", () => console.log("run the game")) //runs the
+stand.addEventListener("click", () => standHit()) //runs the
 
 
 
@@ -53,9 +53,7 @@ function bet(bet) {
 
 function dealGame() {
 console.log("deal game run")
-
     betTotal.innerText = "IN GAME"
-
     // dealers hand 
     let dealersCardOne = getCards()
     visableCard.innerText = `${dealersCardOne}`
@@ -73,32 +71,24 @@ console.log("deal game run")
     let userHandValue = userCardOne + userCardTwo  // user hand value
     userTotal.innerText = `${userHandValue}` 
 
-
-    
     if (dealersHandValue === 21 && userHandValue !== 21 ) {
-        console.log("Dealer Wins")
+        dealersMoney = dealersMoney + (totalBet * 2)
+        totalBet = 0
+        console.log("dealer Blackjack")
     }
 
-    if (dealersHandValue >22 && dealersHandValue > userHandValue) {
-        Stand(totalBet, dealerWins)
-    }
- 
-    if (userHandValue >22 && userHandValue > dealersHandValue) {
-        Stand(totalBet, userWins)
-    }
-    if (userHandValue === dealersHandValue ) {
-        console.log("push")
-    }
 }
 
-function Strand() {
-    if (dealersHandValue < userHandValue) {
+
+
+function standHit(dealershandvalueneeded) {
+    
+    if (dealersHandValue < userHandValue && dealersHandValue < 22 ) {
     dealerNewCard = document.createElement('div')
     newCard.class = "dealerHand"
     cardForDealer = `${getCards()}`
-    newCard.innerText = cardForDealer
+    dealerNewCard.innerText = cardForDealer
     computersHand.appendChild(dealerNewCard)
-
     }
 
 }
@@ -118,9 +108,13 @@ function giveMoney(whoWon) {
 
 function hit() {
     newCard = document.createElement('div')
+    newCardRandom =`${getCards()}`
     newCard.class = "userHand"
-    newCard.innerText = `${getCards()}`
+    newCard.innerText = newCardRandom
     userHand.appendChild(newCard)
+
+    userTotal.innerText = `${userHandValue + newCardRandom}` 
+
 
     if (userHandValue > 21) {
         console.log('Dealer Wins')
@@ -143,3 +137,18 @@ function getCards() {
      return cardShuffle
  
  }
+
+
+
+
+//  if (dealersHandValue >22 && dealersHandValue > userHandValue) {
+//     Stand(totalBet, dealerWins)
+// }
+
+// if (userHandValue >22 && userHandValue > dealersHandValue) {
+//     Stand(totalBet, userWins)
+// }
+// if (userHandValue === dealersHandValue ) {
+//     console.log("push")
+// }
+// }
