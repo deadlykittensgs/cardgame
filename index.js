@@ -4,6 +4,7 @@ let dealersMoney = 1000
 let playersMoney = 1000
 let userHandValue = 0
 let dealersHandValue = 0
+let dealersCardTwo = 0
 
 // buttons from html 
 const dealersTotal = document.getElementById("dealersTotal")
@@ -22,8 +23,6 @@ const whoWon = document.getElementById("whoWon")
 const nextHandClick = document.getElementById("nextHand")
 
 
-// dynamic text
-
 
 //on click
 deal.addEventListener("click", () => dealGame()) // make deal cards
@@ -32,40 +31,49 @@ betTwo.addEventListener("click", () => bet(10)) // make add to bet
 hitMe.addEventListener("click", () => hit(userHandValue)) // gives player a card
 stand.addEventListener("click", () => standHit(userHandValue,dealersHandValue)) //runs the
 
-
 // functions
 
-// game starts empty page 
+// step 1: game starts empty page 
 
-// bet amount is decided
+// Step 2: bet amount is decided
 function bet(bet) {
     playersMoney = playersMoney - bet
     totalBet = totalBet + bet
     betTotal.innerText = `Bet: ${totalBet}`
     playersMoneySlot.innerText = `${playersMoney}`
     
-  
-   
 }
 
 
 
 
-// bets are placed and the cards are dealt
+// Step 3: bets are locked in and the cards are dealt
 
 function dealGame() {
+
 console.log("deal game run")
 betTotal.innerText = "IN GAME"
-
-
+//remove event listener from the bet box
  userHandValue = getUsersHand()
  dealersHandValue = getDealersHand()
 
     //console.log(userHandValue)
     //console.log(dealersHandValue)
     if (dealersHandValue === 21 && userHandValue !== 21 ) {
-        dealerWins()
-        console.log("dealer Blackjack")
+
+        dealersTotal.innerText = `${dealersHandValue}`
+        flippedCard.innerText = `${dealersCardTwo}`
+        
+        console.log("dealer Blackjack") 
+
+        whoWon.innerText = "Dealer Blackjack:  "
+        nextHand = document.createElement('button')
+        nextHand.innerText = "Next Hand"
+        nextHand.id= 'nextHand'
+        whoWon.appendChild(nextHand)
+        nextHand.addEventListener("click", () => unplug())
+        
+       
     }
 
 
@@ -88,10 +96,10 @@ function getDealersHand() {
         // dealers hand 
         let dealersCardOne = getCards()
         visableCard.innerText = `${dealersCardOne}`
-        let dealersCardTwo = getCards()
-        flippedCard.innerText = `${dealersCardTwo}`
+         dealersCardTwo = getCards()
+        //flippedCard.innerText = `${dealersCardTwo}`
         let dealersHandValue = dealersCardOne + dealersCardTwo // dealer hand value
-        dealersTotal.innerText = `${dealersHandValue}`
+        dealersTotal.innerText = `${dealersCardOne}`
         return dealersHandValue
 }
 
@@ -109,9 +117,8 @@ function standHit(user, dealer) {
     dealersHandValue = dealersHandValue + parseInt(dealerNewCard.innerText) 
     computersHand.appendChild(dealerNewCard)
     dealersTotal.innerText = `${dealersHandValue}` 
-    standHit(userHandValue,dealersHandValue) // this needs to bo looped not called
-   
     }
+   
     if (dealersHandValue === userHandValue) {
         push()
     }
@@ -145,28 +152,35 @@ function hit(userHV) {
 
 function dealerWins() {
     console.log("Dealer Wins")
+
+    dealersTotal.innerText = `${dealersHandValue}`
+    flippedCard.innerText = `${dealersCardTwo}`
+
     whoWon.innerText = "Dealer Wins:  "
     nextHand = document.createElement('button')
     nextHand.innerText = "Next Hand"
     nextHand.id= 'nextHand'
     whoWon.appendChild(nextHand)
-    nextHand.addEventListener("click", () => resetGame())
-
-    //resetGame("dealer")
+    nextHand.addEventListener("click", () => unplug())
+    // nextHandClick.addEventListener("click", () => resetGame(dealer))
 
 
 }
 
 function PlayerWins() {
+
+    dealersTotal.innerText = `${dealersHandValue}`
+    flippedCard.innerText = `${dealersCardTwo}`
+
     console.log("player Wins")
     whoWon.innerText = "Player Wins:  "
     nextHand = document.createElement('button')
     nextHand.innerText = "Next Hand"
     nextHand.id= 'nextHand'
     whoWon.appendChild(nextHand)
-    nextHand.addEventListener("click", () => resetGame())
+    nextHand.addEventListener("click", () => unplug())
    
-    //resetGame("player")
+
     
 
 }
@@ -174,6 +188,11 @@ function PlayerWins() {
 function push() {
 // needs game reset with bet pushed
 whoWon.innerText = "Push"
+nextHand = document.createElement('button')
+nextHand.innerText = "Next Hand"
+nextHand.id= 'nextHand'
+whoWon.appendChild(nextHand)
+nextHand.addEventListener("click", () => unplug())
 
 
 }
@@ -184,6 +203,7 @@ if (winner = "player") {
     playersMoneyMoney = playersMoney + totalBet * 2
     totalBet = 0
     console.log("playerGotMoney")
+    
    
     
 } 
