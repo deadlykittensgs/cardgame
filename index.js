@@ -19,7 +19,7 @@ const userHand = document.getElementById("userHand")
 const stand = document.getElementById("stand")
 const playersMoneySlot = document.getElementById("playersMoney")
 const whoWon = document.getElementById("whoWon")
-//const visableCard = document.getElementById("visableCard")
+const nextHandClick = document.getElementById("nextHand")
 
 
 // dynamic text
@@ -103,15 +103,15 @@ function standHit(user, dealer) {
 
     console.log("stand")
     
-    if (dealer < user && dealer < 22 ) {
+    while (dealersHandValue < user && dealersHandValue < 22 ) {
     dealerNewCard = document.createElement('div')
     dealerNewCard.innerText = `${getCards()}`
     dealersHandValue = dealersHandValue + parseInt(dealerNewCard.innerText) 
     computersHand.appendChild(dealerNewCard)
     dealersTotal.innerText = `${dealersHandValue}` 
     standHit(userHandValue,dealersHandValue) // this needs to bo looped not called
+   
     }
-    
     if (dealersHandValue === userHandValue) {
         push()
     }
@@ -123,8 +123,9 @@ function standHit(user, dealer) {
     if (dealersHandValue < 22 && dealersHandValue > userHandValue ) {
     
         dealerWins()
+    }
 
-}
+
 }
 
 
@@ -144,21 +145,29 @@ function hit(userHV) {
 
 function dealerWins() {
     console.log("Dealer Wins")
-    dealersMoney = dealersMoney + totalBet * 2
-    totalBet = 0
-    whoWon.innerText = "Dealer Wins"
+    whoWon.innerText = "Dealer Wins:  "
+    nextHand = document.createElement('button')
+    nextHand.innerText = "Next Hand"
+    nextHand.id= 'nextHand'
+    whoWon.appendChild(nextHand)
+    nextHand.addEventListener("click", () => resetGame())
 
+    //resetGame("dealer")
 
-    //needs to reset game
 
 }
 
 function PlayerWins() {
     console.log("player Wins")
-    playersMoneyMoney = playersMoney + totalBet * 2
-    totalBet = 0
-    whoWon.innerText = "Player Wins"
-    //needs to reset game
+    whoWon.innerText = "Player Wins:  "
+    nextHand = document.createElement('button')
+    nextHand.innerText = "Next Hand"
+    nextHand.id= 'nextHand'
+    whoWon.appendChild(nextHand)
+    nextHand.addEventListener("click", () => resetGame())
+   
+    //resetGame("player")
+    
 
 }
 
@@ -169,9 +178,38 @@ whoWon.innerText = "Push"
 
 }
 
+
+function resetGame(winner) {
+if (winner = "player") {
+    playersMoneyMoney = playersMoney + totalBet * 2
+    totalBet = 0
+    console.log("playerGotMoney")
+   
+    
+} 
+if (winner == "dealer") {
+    dealersMoney = dealersMoney + totalBet * 2
+    totalBet = 0
+    console.log("dealerGotMoney")
+    
+}
+else {
+    console.log("betsendfail")
+}
+
+ 
+}
+
+
+function unplug() {
+    location.reload()
+}
+
 // get a card 
 function getCards() {
     let cardShuffle = Math.floor(Math.random() * 11) +1  
      return cardShuffle
  
  }
+
+

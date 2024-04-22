@@ -78,7 +78,21 @@ body {
     flex: 1 1 auto;
     font-size: larger;
     color: goldenrod;
+    opacity: 0.9;
   
+}
+
+#whoWon button:hover {
+    opacity: 0.7;
+}
+
+
+
+#nextHand {
+    background-color:goldenrod;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 20px;
 }
 
 
