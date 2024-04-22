@@ -71,6 +71,17 @@ body {
 
 }
 
+#whoWon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    font-size: larger;
+    color: goldenrod;
+  
+}
+
+
 
 .usersValue {
     display: flex;

@@ -18,6 +18,7 @@ const hitMe = document.getElementById("hit")
 const userHand = document.getElementById("userHand")
 const stand = document.getElementById("stand")
 const playersMoneySlot = document.getElementById("playersMoney")
+const whoWon = document.getElementById("whoWon")
 //const visableCard = document.getElementById("visableCard")
 
 
@@ -57,16 +58,13 @@ console.log("deal game run")
 betTotal.innerText = "IN GAME"
 
 
- userHandValue = getUsersHand ()
- dealersHandValue =getDealersHand()
+ userHandValue = getUsersHand()
+ dealersHandValue = getDealersHand()
 
-
-    console.log(userHandValue)
-    console.log(dealersHandValue)
-
+    //console.log(userHandValue)
+    //console.log(dealersHandValue)
     if (dealersHandValue === 21 && userHandValue !== 21 ) {
-        dealersMoney = dealersMoney + (totalBet * 2)
-        totalBet = 0
+        dealerWins()
         console.log("dealer Blackjack")
     }
 
@@ -104,14 +102,16 @@ function getDealersHand() {
 function standHit(user, dealer) {
 
     console.log("stand")
+    
     if (dealer < user && dealer < 22 ) {
     dealerNewCard = document.createElement('div')
     dealerNewCard.innerText = `${getCards()}`
     dealersHandValue = dealersHandValue + parseInt(dealerNewCard.innerText) 
     computersHand.appendChild(dealerNewCard)
     dealersTotal.innerText = `${dealersHandValue}` 
+    standHit(userHandValue,dealersHandValue) // this needs to bo looped not called
     }
-
+    
     if (dealersHandValue === userHandValue) {
         push()
     }
@@ -127,16 +127,6 @@ function standHit(user, dealer) {
 }
 }
 
-function giveMoney(whoWon) {
-    if (dealerWins) {
-        dealersMoney = dealersMoney + (totalBet * 2)
-        totalBet = 0
-    }
-    if (userWins) {
-        playersMoney = playersMoney + (totalBet * 2) 
-        totalBet = 0
-    }
-}
 
 function hit(userHV) {
     console.log("hit")
@@ -156,8 +146,8 @@ function dealerWins() {
     console.log("Dealer Wins")
     dealersMoney = dealersMoney + totalBet * 2
     totalBet = 0
+    whoWon.innerText = "Dealer Wins"
 
-    document.body.removeChild()
 
     //needs to reset game
 
@@ -167,13 +157,14 @@ function PlayerWins() {
     console.log("player Wins")
     playersMoneyMoney = playersMoney + totalBet * 2
     totalBet = 0
-
+    whoWon.innerText = "Player Wins"
     //needs to reset game
 
 }
 
 function push() {
-
+// needs game reset with bet pushed
+whoWon.innerText = "Push"
 
 
 }
