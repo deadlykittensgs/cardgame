@@ -110,6 +110,13 @@ body {
 
 }
 
+#usersValueHolder {
+    min-width: 5cqh;
+    min-height: 30px;
+    text-align: center;
+    align-content: center;
+}
+
 
 .playersStuff {
     display: flex;
@@ -145,11 +152,13 @@ body {
     max-height: 120px;
 }
 
+
 .playersHand {
     width: 90px;
     height: 120px;
     background-color: rgb(225, 40, 40);
 }
+
 
 .playerOptions {
     width: 90px;

@@ -1,10 +1,38 @@
+
+ // Function to save the value to localStorage
+ function saveToLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+  
+  // Function to retrieve the value from localStorage
+  function getFromLocalStorage(key) {
+    const storedValue = localStorage.getItem(key);
+    return storedValue ? JSON.parse(storedValue) : null;
+  }
+
+// Example: A counter that increments every time the page is loaded
+let money = getFromLocalStorage('money') || 1000; 
+saveToLocalStorage('money', money); // Save the updated counter to localStorage
+
+// Example: Retrieve and log the counter value
+console.log(getFromLocalStorage('money'));
+console.log(money); 
+console.log(typeof(money))
+
+
+
+
+
+
 // game variables 
 let totalBet = 0
 let dealersMoney = 1000
-let playersMoney = 1000
+let playersMoney = money
 let userHandValue = 0
 let dealersHandValue = 0
 let dealersCardTwo = 0
+
+//console.log(getFromLocalStorage('money'))
 
 // buttons from html 
 const dealersTotal = document.getElementById("dealersTotal")
@@ -23,6 +51,9 @@ const whoWon = document.getElementById("whoWon")
 const nextHandClick = document.getElementById("nextHand")
 
 
+playersMoneySlot.innerText = `${playersMoney}`
+
+
 
 //on click
 deal.addEventListener("click", () => dealGame()) // make deal cards
@@ -35,15 +66,19 @@ stand.addEventListener("click", () => standHit(userHandValue,dealersHandValue)) 
 
 // step 1: game starts empty page 
 
+
+
 // Step 2: bet amount is decided
 function bet(bet) {
+    
     playersMoney = playersMoney - bet
     totalBet = totalBet + bet
     betTotal.innerText = `Bet: ${totalBet}`
+    money = playersMoney
+    saveToLocalStorage('money', money);
     playersMoneySlot.innerText = `${playersMoney}`
-    
+    console.log(money)
 }
-
 
 
 
@@ -53,7 +88,7 @@ function dealGame() {
 
 console.log("deal game run")
 betTotal.innerText = "IN GAME"
-//remove event listener from the bet box
+//remove event listener from the bet box to prevent future bets
  userHandValue = getUsersHand()
  dealersHandValue = getDealersHand()
 
@@ -162,7 +197,7 @@ function dealerWins() {
     nextHand.id= 'nextHand'
     whoWon.appendChild(nextHand)
     nextHand.addEventListener("click", () => unplug())
-    // nextHandClick.addEventListener("click", () => resetGame(dealer))
+    resetGame('dealer')
 
 
 }
@@ -179,6 +214,7 @@ function PlayerWins() {
     nextHand.id= 'nextHand'
     whoWon.appendChild(nextHand)
     nextHand.addEventListener("click", () => unplug())
+    resetGame("player")
    
 
     
@@ -199,22 +235,18 @@ nextHand.addEventListener("click", () => unplug())
 
 
 function resetGame(winner) {
-if (winner = "player") {
-    playersMoneyMoney = playersMoney + totalBet * 2
+if (winner === "player") {
+    playersMoney = playersMoney + totalBet * 2
+    money = playersMoney
+    saveToLocalStorage('money', money);
     totalBet = 0
-    console.log("playerGotMoney")
-    
-   
-    
+    console.log("playerGotMoney") 
 } 
-if (winner == "dealer") {
+if (winner === "dealer") {
     dealersMoney = dealersMoney + totalBet * 2
     totalBet = 0
     console.log("dealerGotMoney")
     
-}
-else {
-    console.log("betsendfail")
 }
 
  
@@ -231,5 +263,8 @@ function getCards() {
      return cardShuffle
  
  }
+
+
+ //localStorage.clear()
 
 
