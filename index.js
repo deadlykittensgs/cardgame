@@ -10,14 +10,9 @@
     return storedValue ? JSON.parse(storedValue) : null;
   }
 
-// Example: A counter that increments every time the page is loaded
+// function
 let money = getFromLocalStorage('money') || 1000; 
 saveToLocalStorage('money', money); // Save the updated counter to localStorage
-
-// Example: Retrieve and log the counter value
-console.log(getFromLocalStorage('money'));
-console.log(money); 
-console.log(typeof(money))
 
 
 
@@ -32,10 +27,8 @@ let userHandValue = 0
 let dealersHandValue = 0
 let dealersCardTwo = 0
 
-//console.log(getFromLocalStorage('money'))
-
 // buttons from html 
-const newGame = document.getElementById(newGame)
+
 const dealersTotal = document.getElementById("dealersTotal")
 const userTotal = document.getElementById("usersValueHolder")
 const deal = document.getElementById("deal")
@@ -50,6 +43,7 @@ const stand = document.getElementById("stand")
 const playersMoneySlot = document.getElementById("playersMoney")
 const whoWon = document.getElementById("whoWon")
 const nextHandClick = document.getElementById("nextHand")
+const newGame = document.getElementById("newGame")
 
 
 playersMoneySlot.innerText = `${playersMoney}`
@@ -62,7 +56,7 @@ betOne.addEventListener("click", () => bet(1)) // make add to bet
 betTwo.addEventListener("click", () => bet(10)) // make add to bet
 hitMe.addEventListener("click", () => hit(userHandValue)) // gives player a card
 stand.addEventListener("click", () => standHit(userHandValue,dealersHandValue)) //runs the
-newGame.addEventListener("click", () => newGame())
+newGame.addEventListener("click", ()=> newGameFunction()) // clear local storage
 
 // functions
 
@@ -79,7 +73,6 @@ function bet(bet) {
     money = playersMoney
     saveToLocalStorage('money', money);
     playersMoneySlot.innerText = `${playersMoney}`
-    console.log(money)
 }
 
 
@@ -89,7 +82,6 @@ function bet(bet) {
 function dealGame() {
 
 console.log("deal game run")
-betTotal.innerText = "IN GAME"
 //remove event listener from the bet box to prevent future bets
  userHandValue = getUsersHand()
  dealersHandValue = getDealersHand()
@@ -158,6 +150,7 @@ function standHit(user, dealer) {
    
     if (dealersHandValue === userHandValue) {
         push()
+        
     }
 
     if (dealersHandValue >21) {
@@ -173,7 +166,7 @@ function standHit(user, dealer) {
 }
 
 
-function hit(userHV) {
+function hit() {
     console.log("hit")
     newCard = document.createElement('div')
     newCard.innerText =`${getCards()}`
@@ -267,9 +260,14 @@ function getCards() {
  }
 
 
- function newGame() {
+ function newGameFunction() {
     console.log("newGame")
-    localStorage.clear()
+    playersMoney = 1000
+    money = playersMoney
+    saveToLocalStorage('money', money);
+    playersMoneySlot.innerText = `${playersMoney}`
+    totalBet = 0
+   
 }
 
 
