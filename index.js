@@ -35,6 +35,7 @@ let dealersCardTwo = 0
 //console.log(getFromLocalStorage('money'))
 
 // buttons from html 
+const newGame = document.getElementById(newGame)
 const dealersTotal = document.getElementById("dealersTotal")
 const userTotal = document.getElementById("usersValueHolder")
 const deal = document.getElementById("deal")
@@ -61,6 +62,7 @@ betOne.addEventListener("click", () => bet(1)) // make add to bet
 betTwo.addEventListener("click", () => bet(10)) // make add to bet
 hitMe.addEventListener("click", () => hit(userHandValue)) // gives player a card
 stand.addEventListener("click", () => standHit(userHandValue,dealersHandValue)) //runs the
+newGame.addEventListener("click", () => newGame())
 
 // functions
 
@@ -265,6 +267,9 @@ function getCards() {
  }
 
 
- //localStorage.clear()
+ function newGame() {
+    console.log("newGame")
+    localStorage.clear()
+}
 
 
