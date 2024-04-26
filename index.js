@@ -15,10 +15,6 @@ let money = getFromLocalStorage('money') || 1000; // Assign players money to the
 saveToLocalStorage('money', money); // Save the updated counter to localStorage
 
 
-
-
-
-
 // game variables 
 let totalBet = 0
 let dealersMoney = Infinity
@@ -26,6 +22,7 @@ let playersMoney = money
 let userHandValue = 0
 let dealersHandValue = 0
 let dealersCardTwo = 0
+let toggle = true
 
 // buttons from html 
 const dealersTotal = document.getElementById("dealersTotal")
@@ -33,6 +30,7 @@ const userTotal = document.getElementById("usersValueHolder")
 const deal = document.getElementById("deal")
 const betTotal = document.getElementById("betTotal")
 const betOne = document.getElementById("betOne")
+const betTwo = document.getElementById("betTwo")
 const visableCard = document.getElementById("visableCard")
 const flippedCard = document.getElementById("flippedCard")
 const playerCardOne = document.getElementById("playerCardOne")
@@ -45,15 +43,17 @@ const nextHandClick = document.getElementById("nextHand")
 const newGame = document.getElementById("newGame")
 
 //on click listeners 
-deal.addEventListener("click", () => dealGame()) // make deal cards
+
+
+if (toggle === true) {
 betOne.addEventListener("click", () => bet(1)) // make add to bet
 betTwo.addEventListener("click", () => bet(10)) // make add to bet
+deal.addEventListener("click", () => dealGame()) // make deal cards
+}
+
 hitMe.addEventListener("click", () => hit(userHandValue)) // gives player a card
 stand.addEventListener("click", () => standHit(userHandValue,dealersHandValue)) //runs the
 newGame.addEventListener("click", ()=> newGameFunction()) // clear local storage
-
-
-
 
 // assign the players money value on load in 
 playersMoneySlot.innerText = `${playersMoney}`
@@ -62,7 +62,6 @@ playersMoneySlot.innerText = `${playersMoney}`
 // functions
 
 // step 1: game starts empty page 
-
 
 
 // Step 2: bet amount is decided and stored in local storage 
@@ -81,9 +80,14 @@ function bet(bet) {
 // Step 3: bets are locked in and the cards are dealt
 
 function dealGame() {
-
+if (totalBet == 0) { 
+     userTotal.innerText = "Bet first to play game" 
+}
+else {
+    toggleBet() //remove event listener from the bet box to prevent future bets
 console.log("deal game run")
-//remove event listener from the bet box to prevent future bets
+
+
  userHandValue = getUsersHand()
  dealersHandValue = getDealersHand()
 
@@ -101,6 +105,7 @@ console.log("deal game run")
         // click next hand to reset the game 
         nextHand.addEventListener("click", () => unplug())
     }
+}
 }
 //This function gets the users hand
 function getUsersHand () {
@@ -266,4 +271,9 @@ function getCards() {
    
 }
 
+
+function toggleBet() {
+    // toggle 
+
+}
 
