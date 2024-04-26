@@ -1,10 +1,15 @@
 
+:root {
+    --cardColor: url('public/CardBackground.jpeg')
+}
+
+
 * {
 
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* border: 1px solid black;   */
+    border: 1px solid black;   
 }
 
 
@@ -26,7 +31,9 @@ body {
 .deck button {
     width: 90px;
     height: 120px;
-    background-color: brown;
+    background-image: url('public/CardBackground.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .gameBoard {
     height: 100vh;

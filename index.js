@@ -22,7 +22,7 @@ let playersMoney = money
 let userHandValue = 0
 let dealersHandValue = 0
 let dealersCardTwo = 0
-let toggle = true
+let toggle =  true
 
 // buttons from html 
 const dealersTotal = document.getElementById("dealersTotal")
@@ -56,7 +56,7 @@ stand.addEventListener("click", () => standHit(userHandValue,dealersHandValue)) 
 newGame.addEventListener("click", ()=> newGameFunction()) // clear local storage
 
 // assign the players money value on load in 
-playersMoneySlot.innerText = `${playersMoney}`
+playersMoneySlot.innerText = `$${playersMoney}`
 
 
 // functions
@@ -66,13 +66,17 @@ playersMoneySlot.innerText = `${playersMoney}`
 
 // Step 2: bet amount is decided and stored in local storage 
 function bet(bet) {
-    
+    if (userHandValue === 0) {
     playersMoney = playersMoney - bet
     totalBet = totalBet + bet
     betTotal.innerText = `Bet: ${totalBet}`
     money = playersMoney
     saveToLocalStorage('money', money);
-    playersMoneySlot.innerText = `${playersMoney}`
+    playersMoneySlot.innerText = `$${playersMoney}`
+    }
+    else {
+        deal.innerText = "Can not Bet after the game started" 
+    }
 }
 
 
@@ -80,12 +84,14 @@ function bet(bet) {
 // Step 3: bets are locked in and the cards are dealt
 
 function dealGame() {
+  
 if (totalBet == 0) { 
      userTotal.innerText = "Bet first to play game" 
 }
 else {
-    toggleBet() //remove event listener from the bet box to prevent future bets
+deal.disabled = true
 console.log("deal game run")
+deal.innerText = "Game Started" 
 
 
  userHandValue = getUsersHand()
@@ -136,7 +142,9 @@ function getDealersHand() {
 
 
 function standHit(user) {
-    
+
+
+    if (dealersHandValue > 0) {
     // this loop runs until the dealer wins or loses drawing the dealer cards (needs a stand on 17 added)
     while (dealersHandValue < user && dealersHandValue < 22 ) {
     dealerNewCard = document.createElement('div')
@@ -160,16 +168,19 @@ function standHit(user) {
     }
 
 
-}
+}}
 
 // Once a dealer clicks the hit button this function gives them another card
 function hit() {
+
+    
+    if (dealersHandValue > 0) {
     console.log("hit")
     newCard = document.createElement('div')
     newCard.innerText =`${getCards()}`
     userHandValue = userHandValue + parseInt(newCard.innerText) 
     userHand.appendChild(newCard)
-    userTotal.innerText = `${userHandValue}` 
+    userTotal.innerText = `${userHandValue}` }
     if (userHandValue >21) {
         dealerWins()
        
@@ -266,14 +277,8 @@ function getCards() {
     playersMoney = 1000
     money = playersMoney
     saveToLocalStorage('money', money);
-    playersMoneySlot.innerText = `${playersMoney}`
+    playersMoneySlot.innerText = `$${playersMoney}`
     totalBet = 0
    
-}
-
-
-function toggleBet() {
-    // toggle 
-
 }
 
