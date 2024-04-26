@@ -289,36 +289,72 @@ function getCards() {
      return cardShuffle
  
  }
+
+
+
+
+
+//  ------------------------------------
+
+
+
+
+// plan
+// make a deck out of a object with card value then card symbol 
+// and card suit then have a random number genarator sift through the 
+// object and get a card and return the objects three values and in the 
+// function where card values are assighned and pics are put display all of that
+
  
-//Make a deck
- function createDeckIndex() {
-    const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
-    const ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
-    const deckIndex = [];
+// //Make a deck
+//  function createDeckIndex() {
+//     const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+//     const ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+//     const deckIndex = [];
 
-    suits.forEach(suit => {
-        ranks.forEach(rank => {
-            const card = `${rank} of ${suit}`;
-            deckIndex.push(card);
-        });
-    });
+//     suits.forEach(suit => {
+//         ranks.forEach(rank => {
+//             const card = `${rank} of ${suit}`;
+//             deckIndex.push(card);
+//         });
+//     });
+//     return deckIndex;
+// }
 
-    return deckIndex;
-}
+// // pull a card from the deck 
+// function pullCard() {
+// let card = createDeckIndex()
+// indexOf = cardNumber()
+// console.log(card[indexOf])
+// }
 
-// pull a card from the deck 
-function pullCard() {
-let card = createDeckIndex()
-indexOf = cardNumber()
-console.log(card[indexOf])
+// //choose card number
+// function cardNumber() {
+//     let cardShuffle = Math.floor(Math.random() * 52)
+//      return cardShuffle
+//  }
 
-}
+//  pullCard()
 
-//choose card number
-function cardNumber() {
-    let cardShuffle = Math.floor(Math.random() * 52)
-     return cardShuffle
+// function findTheValue() {
+//  if (card == "Jack" || "Queen" || "King" ) {
+//     value + 10 
+//  }
  
- }
+//  if (card ==  "Ace" && (userHandValue + 11) < 22 ) {
+//     value == 1
 
- pullCard()
+//  if (card ==  "Ace" && (userHandValue + 11) > 22 ){
+//     value == 11
+//  }
+//  }}
+
+
+//  function cardPicture() {
+//     let cardba = document.querySelectorAll(".cardBack").style.opacity = 0;
+   
+// // remove the background image from all cards besides hidden card
+// // to this by adding background image to a class and then assigning that call to the cards until 
+// //the deal cards button is hit 
+//  }
+//  cardPicture()
