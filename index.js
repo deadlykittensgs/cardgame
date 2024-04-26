@@ -95,6 +95,7 @@ deal.innerText = "Game Started"
 
 
  userHandValue = getUsersHand()
+
  dealersHandValue = getDealersHand()
 
     if (dealersHandValue === 21 && userHandValue !== 21 ) {
@@ -282,3 +283,42 @@ function getCards() {
    
 }
 
+
+function getCards() {
+    let cardShuffle = Math.floor(Math.random() * 11) +1  
+     return cardShuffle
+ 
+ }
+ 
+//Make a deck
+ function createDeckIndex() {
+    const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+    const ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+    const deckIndex = [];
+
+    suits.forEach(suit => {
+        ranks.forEach(rank => {
+            const card = `${rank} of ${suit}`;
+            deckIndex.push(card);
+        });
+    });
+
+    return deckIndex;
+}
+
+// pull a card from the deck 
+function pullCard() {
+let card = createDeckIndex()
+indexOf = cardNumber()
+console.log(card[indexOf])
+
+}
+
+//choose card number
+function cardNumber() {
+    let cardShuffle = Math.floor(Math.random() * 52)
+     return cardShuffle
+ 
+ }
+
+ pullCard()
