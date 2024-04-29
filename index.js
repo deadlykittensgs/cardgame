@@ -89,6 +89,7 @@ if (totalBet == 0) {
      userTotal.innerText = "Bet first to play game" 
 }
 else {
+    cardPicture()
 deal.disabled = true
 console.log("deal game run")
 deal.innerText = "Game Started" 
@@ -241,6 +242,7 @@ nextHand.addEventListener("click", () => unplug())
 
 
 function resetGame(winner) {
+    flippedCard.classList.remove("cardBack")
 
     // If player wins
 if (winner === "player") {
@@ -350,11 +352,9 @@ function getCards() {
 //  }}
 
 
-//  function cardPicture() {
-//     let cardba = document.querySelectorAll(".cardBack").style.opacity = 0;
-   
-// // remove the background image from all cards besides hidden card
-// // to this by adding background image to a class and then assigning that call to the cards until 
-// //the deal cards button is hit 
-//  }
-//  cardPicture()
+ function cardPicture() {
+    visableCard.classList.remove("cardBack")
+    playerCardOne.classList.remove("cardBack")
+    playerCardTwo.classList.remove("cardBack")
+
+ }

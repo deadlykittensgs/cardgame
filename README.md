@@ -3,6 +3,9 @@ goal
 create a working blackjack game 
 
 
+game is working but the cards need to be defined and given background images
+
+
 components
 
  a deck with all the cards

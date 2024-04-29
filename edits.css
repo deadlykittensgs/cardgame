@@ -1,14 +1,14 @@
 
 * {
-    
+    cardBack
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    border: 1px solid black;   
+     /* border: 1px solid black;     */
 }
 
 body {
-    height: 150vh;
+    height: 130vh;
     width: 100vw;;
     background-image: url('public/green_felt_texture.jpg');
     background-size: cover;
@@ -19,9 +19,37 @@ body {
 .deck {
     display: flex;
     height: 150px;
-    justify-content: center;  
+    justify-content: space-between;  
     padding: 10px;
 
+}
+
+
+.deck h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: goldenrod;
+}
+
+#b {
+    color: black;
+    font-size: 3.4rem;
+
+}
+#j {
+    color: red;
+    font-size: 3.4rem;
+}
+.deck h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: goldenrod;
+    font-size: 1.5rem;
+    overflow: auto;
+    
+  
 }
 
 .deck button {
@@ -40,8 +68,11 @@ body {
 }
 
 .computersStuff {
+    display: flex;
+    flex-direction: column;
    text-align: center;
-   flex: 1;
+   flex: 1
+ 
 }
 
 .computersHand {
@@ -77,6 +108,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 20%;
     flex: 1 1 auto;
     font-size: larger;
     color: goldenrod;
@@ -92,48 +124,62 @@ body {
 
 #nextHand {
     background-color:goldenrod;
+    margin: 20px;
     color: rgb(0, 0, 0);
     padding: 10px;
     border-radius: 20px;
 }
 
+#whoWon {
+  border: none;
+}
 
 
 .usersValue {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 20px;
 }
 
+
+
 .usersValue div {
-    background-color: rgb(255, 255, 255);
+    display: flex;
+    background-color: white;
+    border: 1px solid rgb(255, 255, 255);
+    min-width: 60px;
+    min-height: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+ 
 
 }
 
-#usersValueHolder {
-    min-width: 5cqh;
+#deal {
+    background-color: goldenrod;
+    min-width: 60px;
     min-height: 30px;
-    text-align: center;
-    align-content: center;
+    border-radius: 30px;
 }
 
 
 .playersStuff {
+    padding: 10px;
     display: flex;
     text-align: center;
     justify-content: space-between;
+    align-items: flex-start;
     flex: 1;
+    overflow: auto;
 }
-
-
 
 
 .playersMoney {
     width: 90px;
-    height: 120px;
-    
+    height: 120px; 
 }
 .playersMoney div  {
     border: 1px solid rgb(0, 0, 0);
@@ -171,23 +217,23 @@ body {
 
 
 .playerOptions button{ 
-  
     display: flex;
     width: 100%;
     height: 25%;
     flex: 1 1 auto; 
-    background-color: rgb(35, 28, 215);
+    background-color: rgb(35, 28, 240);
     color: white;
    justify-content: center;
    align-items: center;
 }
 
-footer {
-    
-}
 
 .cardBack {
     background-image: url('public/CardBackground.jpeg');
     background-size: contain;
     background-repeat: no-repeat;
+}
+.hover:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
